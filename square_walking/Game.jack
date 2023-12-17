@@ -1,14 +1,17 @@
 class Game {
   field Square square;
+  field Wall wall;
   field int direction;
 
   constructor Game new() {
-    let square = Square.new(0, 0, 20);
+    let wall = Wall.intitialize();
+    let square = Square.new(0, 0, 7);
     let direction = 0;
     return this;
   }
 
   method void dispose() {
+    do wall.dispose();
     do square.dispose();
     do Memory.deAlloc(this);
     return;
@@ -27,30 +30,29 @@ class Game {
     if(direction = 4) {
       do square.move_right();
     }
-    do Sys.wait(5);
+    do Sys.wait(50);
     return;
   }
-
+  
   method void run() {
     var char key;
     var boolean exit;
     let exit = false;
-
     while(~exit) {
       //while key is not be pressed, the square keeps moving
       while(key = 0) {
         let key = Keyboard.keyPressed();
         do move();
+        if(wall.hit(square.Posrow(), square.Poscol()) = 1){
+          return;
+        }
+        if((square.Posrow() = 120) & (square.Poscol() = 496)) {
+          return;
+        }
       }
 
       if(key = 81) {    //press q
         let exit = true;
-      }
-      if(key = 90) {    //press z
-        do square.decrease_size();
-      }
-      if(key = 88) {    //press x
-        do square.increase_size();
       }
       if(key = 131) {   //press up_direction
         let direction = 1;
@@ -69,6 +71,12 @@ class Game {
       while(~(key = 0)) {
         let key = Keyboard.keyPressed();
         do move();
+        if(wall.hit(square.Posrow(), square.Poscol()) = 1){
+          return;
+        }
+        if((square.Posrow() = 120) & (square.Poscol() = 496)) {
+          return;
+        }
       }
     }
     return;
