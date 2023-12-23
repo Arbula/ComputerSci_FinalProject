@@ -18,6 +18,8 @@ class Wall {
   }
 
   method void dispose() {
+    do pos.dispose();
+    do Memory.deAlloc(pos);
     do Memory.deAlloc(this);
     return;
   }
