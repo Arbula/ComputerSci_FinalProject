@@ -1,0 +1,119 @@
+// Transfer: screen_row(or screen_col) = 8 * row(or col) + 7 
+
+class Wall {
+  field Array pos;
+
+  constructor Wall intitialize() {
+    var int i;
+    let i = 0;
+    let pos = Array.new(2048);
+    do Screen.clearScreen();
+    do Screen.drawRectangle(480, 224, 487, 231);    //print destinaiton  
+    while (i < 2048){
+      let pos[i] = 0;
+      let i = i + 1;
+    }
+    do world4();
+    return this;
+  }
+
+  method void dispose() {
+    do Memory.deAlloc(this);
+    return;
+  }
+
+  method int hit(int squ_row, int squ_col) {
+    var int row, col;
+    let row = squ_row / 8;
+    let col = squ_col / 8;
+
+    if(pos[row * 64 + col] = 1) {
+      return 1;
+    }
+    else {
+      return 0;
+    }
+  }
+
+  method void draw(int col1, int row1, int col2, int row2){
+    var int col;
+    var int row;
+    do Screen.drawRectangle(col1, row1, col2, row2);
+    let col = col1 / 8;
+    let row = row1 / 8;
+    while((col < (col2 / 8)) | (col = (col2 / 8))){
+      let row = row1 / 8;
+      while((row < (row2 / 8)) | (row = (row2 / 8))){
+        let pos[row * 64 + col] = 1;
+        let row = row + 1;
+      }
+      let col = col + 1; 
+    }
+    return;
+  }
+
+  method void world1(){
+    return;
+  }
+
+  method void world2(){
+    do draw(64, 0, 71, 191);
+    do draw(192, 64, 199, 255);   
+    do draw(320, 0, 327, 191);
+    do draw(448, 64, 455, 255);
+    return;
+  }
+
+  method void world3(){
+    do draw(64, 0, 71, 63);
+    do draw(64, 128, 71, 191);
+    do draw(64, 128, 127, 135);
+    do draw(128, 64, 135, 255);
+    do draw(192, 64, 199, 255);
+    do draw(384, 0, 391, 127);
+    do draw(256, 0, 263, 127);
+    do draw(320, 64, 327, 191);
+    do draw(256, 192, 447, 199);
+    do draw(384, 128, 511, 135);
+    do draw(448, 192, 455, 255);
+    return;
+  }
+
+  method void world4(){
+    do draw(64, 0, 71, 31);
+    do draw(64, 64, 71, 95);
+    do draw(64, 128, 71, 159);
+    do draw(64, 192, 71, 223);
+    do draw(96, 32, 103, 63);
+    do draw(96, 96, 103, 127);
+    do draw(96, 160, 103, 191);
+    do draw(96, 224, 103, 255);
+    do draw(128, 0, 135, 31);
+    do draw(128, 64, 135, 95);
+    do draw(128, 128, 135, 159);
+    do draw(128, 192, 135, 223);
+    do draw(160, 32, 167, 63);
+    do draw(160, 96, 167, 127);
+    do draw(160, 160, 167, 191);
+    do draw(160, 224, 167, 255);   
+    do draw(192, 0, 199, 31);
+    do draw(192, 64, 199, 255);
+    do draw(224, 0, 231, 63);
+    do draw(224, 96, 231, 255);
+    do draw(256, 0, 263, 95);
+    do draw(256, 128, 263, 255);
+    do draw(288, 0, 295, 127);
+    do draw(288, 160, 295, 255);
+    do draw(320, 0, 327, 159);
+    do draw(320, 192, 327, 255);
+    do draw(352, 0, 359, 191);
+    do draw(352, 224, 359, 255);
+    do draw(384, 0, 391, 223);
+    do draw(416, 0, 423, 191);
+    do draw(416, 224, 423, 255);
+    do draw(448, 0, 455, 159);
+    do draw(448, 192, 455, 255);
+    do draw(448, 160, 511, 167);
+    return;
+  }
+}

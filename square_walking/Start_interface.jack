@@ -1,0 +1,87 @@
+class Start_interface {
+  field int choose;
+  field int difficulty;
+  field Game game;
+  field Choose_difficulty choose_difficulty;
+
+  constructor Start_interface new() {
+    let choose = 1;  // 1 for start, 2 for ...
+    let choose_difficulty = Choose_difficulty.new();
+    let difficulty = choose_difficulty.get_value(); // system wait 
+    return this;
+  }
+
+  method void dispose() {
+    do Memory.deAlloc(this);
+    return;
+  }
+
+  method int option() {
+    return choose;
+  }
+
+  method void print() {
+    do Screen.clearScreen();
+    do Output.moveCursor(12, 27);
+    do Output.printString("start game");
+    do Output.moveCursor(12, 25);
+    do Output.printString("c");
+
+    do Output.moveCursor(13, 27);
+    do Output.printString("difficulty");
+    return;
+  }
+
+  method void clearc(int i) {
+    do Output.moveCursor(i + 11, 25);
+    do Output.backSpace();
+    return;
+  }
+
+  method void printc(int i) {
+    do Output.moveCursor(i + 11, 25);
+    do Output.printString("c");
+    return;
+  }
+
+  method void press() {
+    var boolean enter_pressed;
+    let enter_pressed = false;
+    while(~enter_pressed) {
+      if(Keyboard.keyPressed() = 133) {   //down_direction
+        if(choose < 2) {
+          do clearc(choose);
+          let choose = choose + 1;
+          do printc(choose);
+        }
+      }
+      if(Keyboard.keyPressed() = 131) {   //up_direction
+        if(choose > 1) {
+          do clearc(choose);
+          let choose = choose - 1;
+          do printc(choose);
+        }
+      }
+      if(Keyboard.keyPressed() = 128) {
+        let enter_pressed = true;
+      }
+
+      do Output.moveCursor(1, 1);
+      do Output.printInt(choose);
+      do Sys.wait(50);
+    }
+
+    if(choose = 1) {
+      let game = Game.new(difficulty);
+      do game.run();
+      do game.dispose();
+    }
+    if(choose = 2) {
+      do choose_difficulty.choose();
+      let difficulty = choose_difficulty.get_value();
+      do choose_difficulty.dispose();
+    }
+    let choose = 1;
+    return;
+  }
+}
