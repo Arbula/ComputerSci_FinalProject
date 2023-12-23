@@ -3,7 +3,7 @@
 class Wall {
   field Array pos;
 
-  constructor Wall intitialize() {
+  constructor Wall intitialize(int level) {
     var int i;
     let i = 0;
     let pos = Array.new(2048);
@@ -13,7 +13,7 @@ class Wall {
       let pos[i] = 0;
       let i = i + 1;
     }
-    do world4();
+    do generate_world(level);
     return this;
   }
 
@@ -48,6 +48,22 @@ class Wall {
         let row = row + 1;
       }
       let col = col + 1; 
+    }
+    return;
+  }
+
+  method void generate_world(int world) {
+    if(world = 1) {
+      do world1();
+    }
+    if(world = 2) {
+      do world2();
+    }
+    if(world = 3) {
+      do world3();
+    }
+    if(world = 4) {
+      do world4();
     }
     return;
   }

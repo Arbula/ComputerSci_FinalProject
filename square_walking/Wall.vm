@@ -36,7 +36,8 @@ pop local 0
 goto WHILE_EXP0
 label WHILE_END0
 push pointer 0
-call Wall.world4 1
+push argument 0
+call Wall.generate_world 2
 pop temp 0
 push pointer 0
 return
@@ -153,6 +154,51 @@ add
 pop local 0
 goto WHILE_EXP0
 label WHILE_END0
+push constant 0
+return
+function Wall.generate_world 0
+push argument 0
+pop pointer 0
+push argument 1
+push constant 1
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push pointer 0
+call Wall.world1 1
+pop temp 0
+label IF_FALSE0
+push argument 1
+push constant 2
+eq
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push pointer 0
+call Wall.world2 1
+pop temp 0
+label IF_FALSE1
+push argument 1
+push constant 3
+eq
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push pointer 0
+call Wall.world3 1
+pop temp 0
+label IF_FALSE2
+push argument 1
+push constant 4
+eq
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
+push pointer 0
+call Wall.world4 1
+pop temp 0
+label IF_FALSE3
 push constant 0
 return
 function Wall.world1 0

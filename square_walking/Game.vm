@@ -4,7 +4,8 @@ call Memory.alloc 1
 pop pointer 0
 push argument 0
 pop this 3
-call Wall.intitialize 0
+push argument 1
+call Wall.intitialize 1
 pop this 1
 push constant 8
 push constant 8
@@ -126,7 +127,7 @@ and
 if-goto IF_TRUE1
 goto IF_FALSE1
 label IF_TRUE1
-push constant 0
+push constant 1
 return
 label IF_FALSE1
 goto WHILE_EXP1
@@ -215,12 +216,12 @@ and
 if-goto IF_TRUE8
 goto IF_FALSE8
 label IF_TRUE8
-push constant 0
+push constant 1
 return
 label IF_FALSE8
 goto WHILE_EXP2
 label WHILE_END2
 goto WHILE_EXP0
 label WHILE_END0
-push constant 0
+push constant 2
 return

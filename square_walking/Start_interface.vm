@@ -127,11 +127,15 @@ call Output.printString 1
 pop temp 0
 push constant 0
 return
-function Start_interface.press 1
+function Start_interface.press 4
 push argument 0
 pop pointer 0
 push constant 0
 pop local 0
+push constant 0
+pop local 1
+push constant 1
+pop local 2
 label WHILE_EXP0
 push local 0
 not
@@ -217,22 +221,51 @@ eq
 if-goto IF_TRUE5
 goto IF_FALSE5
 label IF_TRUE5
+label WHILE_EXP1
+push local 1
+not
+not
+if-goto WHILE_END1
 push this 1
-call Game.new 1
+push local 2
+call Game.new 2
 pop this 2
 push this 2
 call Game.run 1
-pop temp 0
-push this 2
-call Game.dispose 1
-pop temp 0
-label IF_FALSE5
-push this 0
-push constant 2
+pop local 3
+push local 3
+push constant 1
 eq
 if-goto IF_TRUE6
 goto IF_FALSE6
 label IF_TRUE6
+push local 2
+push constant 1
+add
+pop local 2
+label IF_FALSE6
+push local 3
+push constant 2
+eq
+if-goto IF_TRUE7
+goto IF_FALSE7
+label IF_TRUE7
+push constant 0
+not
+pop local 1
+label IF_FALSE7
+push this 2
+call Game.dispose 1
+pop temp 0
+goto WHILE_EXP1
+label WHILE_END1
+label IF_FALSE5
+push this 0
+push constant 2
+eq
+if-goto IF_TRUE8
+goto IF_FALSE8
+label IF_TRUE8
 push this 3
 call Choose_difficulty.choose 1
 pop temp 0
@@ -242,7 +275,7 @@ pop this 1
 push this 3
 call Choose_difficulty.dispose 1
 pop temp 0
-label IF_FALSE6
+label IF_FALSE8
 push constant 1
 pop this 0
 push constant 0

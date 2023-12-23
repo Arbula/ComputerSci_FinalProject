@@ -4,9 +4,9 @@ class Game {
   field int direction;
   field int time;
 
-  constructor Game new(int difficulty) {
+  constructor Game new(int difficulty, int level) {
     let time = difficulty;
-    let wall = Wall.intitialize();
+    let wall = Wall.intitialize(level);
     let square = Square.new(8, 8, 7);
     let direction = 0;
     return this;
@@ -37,7 +37,7 @@ class Game {
     return;
   }
   
-  method void run() {
+  method int run() {
     var char key;
     var boolean exit;
     let exit = false;
@@ -47,27 +47,27 @@ class Game {
       while(key = 0) {
         let key = Keyboard.keyPressed();
         do move();
-        if(wall.hit(square.Posrow(), square.Poscol()) = 1) {
-          return;
+        if(wall.hit(square.Posrow(), square.Poscol()) = 1) {    // lose
+          return 0;
         }
-        if((square.Posrow() = 224) & (square.Poscol() = 480)) {
-          return;
+        if((square.Posrow() = 224) & (square.Poscol() = 480)) {   // win
+          return 1;
         }
       }
 
-      if(key = 81) {    //press q
+      if(key = 81) {    // press q
         let exit = true;
       }
-       if(key = 131) {   //press up_direction
+       if(key = 131) {   // press up_direction
         let direction = 1;
       }
-      if(key = 133) {   //press down_direction
+      if(key = 133) {   // press down_direction
         let direction = 2;
       }
-      if(key = 130) {   //press left_direction
+      if(key = 130) {   // press left_direction
         let direction = 3;
       }
-      if(key = 132) {   //press right_direction
+      if(key = 132) {   // press right_direction
          let direction = 4;
       }
 
@@ -75,14 +75,14 @@ class Game {
       while(~(key = 0)) {
         let key = Keyboard.keyPressed();
         do move();
-        if(wall.hit(square.Posrow(), square.Poscol()) = 1){
-          return;
+        if(wall.hit(square.Posrow(), square.Poscol()) = 1) {    // lose
+          return 0;
         }
-        if((square.Posrow() = 224) & (square.Poscol() = 480)) {
-          return;
+        if((square.Posrow() = 224) & (square.Poscol() = 480)) {   // win
+          return 1;
         }
       }
     }
-    return;
+    return 2;   // exit
   }
 }

@@ -5,9 +5,9 @@ class Start_interface {
   field Choose_difficulty choose_difficulty;
 
   constructor Start_interface new() {
-    let choose = 1;  // 1 for start, 2 for ...
+    let choose = 1;  // 1 for start, 2 for difficulty, 3 for ...
     let choose_difficulty = Choose_difficulty.new();
-    let difficulty = choose_difficulty.get_value(); // system wait 
+    let difficulty = choose_difficulty.get_value(); // time for system wait 
     return this;
   }
 
@@ -45,17 +45,20 @@ class Start_interface {
   }
 
   method void press() {
-    var boolean enter_pressed;
+    var boolean enter_pressed, exit_choose1;
+    var int level, result;
     let enter_pressed = false;
+    let exit_choose1 = false;
+    let level = 1;
     while(~enter_pressed) {
-      if(Keyboard.keyPressed() = 133) {   //down_direction
+      if(Keyboard.keyPressed() = 133) {   // down_direction
         if(choose < 2) {
           do clearc(choose);
           let choose = choose + 1;
           do printc(choose);
         }
       }
-      if(Keyboard.keyPressed() = 131) {   //up_direction
+      if(Keyboard.keyPressed() = 131) {   // up_direction
         if(choose > 1) {
           do clearc(choose);
           let choose = choose - 1;
@@ -72,9 +75,17 @@ class Start_interface {
     }
 
     if(choose = 1) {
-      let game = Game.new(difficulty);
-      do game.run();
-      do game.dispose();
+      while(~exit_choose1) {
+        let game = Game.new(difficulty, level);
+        let result = game.run();
+        if(result = 1) {
+          let level = level + 1;
+        }
+        if(result = 2) {
+          let exit_choose1 = true;
+        }
+        do game.dispose();
+      }
     }
     if(choose = 2) {
       do choose_difficulty.choose();
