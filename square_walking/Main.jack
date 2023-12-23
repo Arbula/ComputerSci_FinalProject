@@ -1,0 +1,12 @@
+class Main {
+  function void main() {
+    var Start_interface start;
+    var Game game;
+    let start = Start_interface.new();
+    while(true) {
+      do start.print();
+      do start.press();
+    }
+    return;
+  }
+}
