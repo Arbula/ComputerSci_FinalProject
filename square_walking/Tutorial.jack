@@ -1,0 +1,25 @@
+class Tutorial {
+  function void print() {
+    var boolean enter_pressed;
+    let enter_pressed = false;
+
+    do Screen.clearScreen();
+    do Output.moveCursor(9, 12);
+    do Output.printString("Press arrow keys to control directions");
+
+    do Output.moveCursor(10, 16);
+    do Output.printString("Press q to pause during the game");
+
+    do Sys.wait(1000);
+    do Output.moveCursor(14, 19);
+    do Output.printString("press enter to go back");
+
+    while(~enter_pressed) {
+      if(Keyboard.keyPressed() = 128) {
+        let enter_pressed = true;
+      }
+      do Sys.wait(50);
+    }
+    return;
+  }
+}

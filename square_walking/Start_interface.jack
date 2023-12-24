@@ -5,7 +5,7 @@ class Start_interface {
   field Choose_difficulty choose_difficulty;
 
   constructor Start_interface new() {
-    let choose = 1;  // 1 for start, 2 for difficulty, 3 for ...
+    let choose = 1;  // 1 for Start, 2 for Difficulty, 3 for Tutorial, 4 for Exit
     let choose_difficulty = Choose_difficulty.new();
     let difficulty = choose_difficulty.get_value(); // time for system wait 
     return this;
@@ -22,24 +22,30 @@ class Start_interface {
 
   method void print() {
     do Screen.clearScreen();
-    do Output.moveCursor(12, 27);
-    do Output.printString("start game");
-    do Output.moveCursor(12, 25);
+    do Output.moveCursor(11, 27);
+    do Output.printString("Start game");
+    do Output.moveCursor(11, 25);
     do Output.printString("c");
 
+    do Output.moveCursor(12, 27);
+    do Output.printString("Difficulty");
+
     do Output.moveCursor(13, 27);
-    do Output.printString("difficulty");
+    do Output.printString("Tutorial");
+
+    do Output.moveCursor(14, 27);
+    do Output.printString("Exit");
     return;
   }
 
   method void clearc(int i) {
-    do Output.moveCursor(i + 11, 25);
+    do Output.moveCursor(i + 10, 25);
     do Output.backSpace();
     return;
   }
 
   method void printc(int i) {
-    do Output.moveCursor(i + 11, 25);
+    do Output.moveCursor(i + 10, 25);
     do Output.printString("c");
     return;
   }
@@ -49,10 +55,11 @@ class Start_interface {
     var int level, result;
     let enter_pressed = false;
     let exit_choose1 = false;
+    let choose = 1;
     let level = 1;
     while(~enter_pressed) {
       if(Keyboard.keyPressed() = 133) {   // down_direction
-        if(choose < 2) {
+        if(choose < 4) {
           do clearc(choose);
           let choose = choose + 1;
           do printc(choose);
@@ -92,7 +99,9 @@ class Start_interface {
       let difficulty = choose_difficulty.get_value();
       do choose_difficulty.dispose();
     }
-    let choose = 1;
+    if(choose = 3) {
+      do Tutorial.print();
+    }
     return;
   }
 }

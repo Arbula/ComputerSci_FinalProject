@@ -29,13 +29,13 @@ push argument 0
 pop pointer 0
 call Screen.clearScreen 0
 pop temp 0
-push constant 12
+push constant 11
 push constant 27
 call Output.moveCursor 2
 pop temp 0
 push constant 10
 call String.new 1
-push constant 115
+push constant 83
 call String.appendChar 2
 push constant 116
 call String.appendChar 2
@@ -57,7 +57,7 @@ push constant 101
 call String.appendChar 2
 call Output.printString 1
 pop temp 0
-push constant 12
+push constant 11
 push constant 25
 call Output.moveCursor 2
 pop temp 0
@@ -67,13 +67,13 @@ push constant 99
 call String.appendChar 2
 call Output.printString 1
 pop temp 0
-push constant 13
+push constant 12
 push constant 27
 call Output.moveCursor 2
 pop temp 0
 push constant 10
 call String.new 1
-push constant 100
+push constant 68
 call String.appendChar 2
 push constant 105
 call String.appendChar 2
@@ -95,13 +95,53 @@ push constant 121
 call String.appendChar 2
 call Output.printString 1
 pop temp 0
+push constant 13
+push constant 27
+call Output.moveCursor 2
+pop temp 0
+push constant 8
+call String.new 1
+push constant 84
+call String.appendChar 2
+push constant 117
+call String.appendChar 2
+push constant 116
+call String.appendChar 2
+push constant 111
+call String.appendChar 2
+push constant 114
+call String.appendChar 2
+push constant 105
+call String.appendChar 2
+push constant 97
+call String.appendChar 2
+push constant 108
+call String.appendChar 2
+call Output.printString 1
+pop temp 0
+push constant 14
+push constant 27
+call Output.moveCursor 2
+pop temp 0
+push constant 4
+call String.new 1
+push constant 69
+call String.appendChar 2
+push constant 120
+call String.appendChar 2
+push constant 105
+call String.appendChar 2
+push constant 116
+call String.appendChar 2
+call Output.printString 1
+pop temp 0
 push constant 0
 return
 function Start_interface.clearc 0
 push argument 0
 pop pointer 0
 push argument 1
-push constant 11
+push constant 10
 add
 push constant 25
 call Output.moveCursor 2
@@ -114,7 +154,7 @@ function Start_interface.printc 0
 push argument 0
 pop pointer 0
 push argument 1
-push constant 11
+push constant 10
 add
 push constant 25
 call Output.moveCursor 2
@@ -135,6 +175,8 @@ pop local 0
 push constant 0
 pop local 1
 push constant 1
+pop this 0
+push constant 1
 pop local 2
 label WHILE_EXP0
 push local 0
@@ -148,7 +190,7 @@ if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0
 push this 0
-push constant 2
+push constant 4
 lt
 if-goto IF_TRUE1
 goto IF_FALSE1
@@ -276,7 +318,14 @@ push this 3
 call Choose_difficulty.dispose 1
 pop temp 0
 label IF_FALSE8
-push constant 1
-pop this 0
+push this 0
+push constant 3
+eq
+if-goto IF_TRUE9
+goto IF_FALSE9
+label IF_TRUE9
+call Tutorial.print 0
+pop temp 0
+label IF_FALSE9
 push constant 0
 return

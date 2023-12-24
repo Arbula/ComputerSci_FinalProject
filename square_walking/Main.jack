@@ -2,11 +2,17 @@ class Main {
   function void main() {
     var Start_interface start;
     var Game game;
+    var boolean exit;
     let start = Start_interface.new();
-    while(true) {
+    let exit = false;
+    while(~exit) {
       do start.print();
       do start.press();
+      if(start.option() = 4) {
+        let exit = true;
+      }
     }
+    do start.dispose();
     return;
   }
 }

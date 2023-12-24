@@ -1,8 +1,10 @@
-function Main.main 2
+function Main.main 3
 call Start_interface.new 0
 pop local 0
-label WHILE_EXP0
 push constant 0
+pop local 2
+label WHILE_EXP0
+push local 2
 not
 not
 if-goto WHILE_END0
@@ -12,7 +14,21 @@ pop temp 0
 push local 0
 call Start_interface.press 1
 pop temp 0
+push local 0
+call Start_interface.option 1
+push constant 4
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 0
+not
+pop local 2
+label IF_FALSE0
 goto WHILE_EXP0
 label WHILE_END0
+push local 0
+call Start_interface.dispose 1
+pop temp 0
 push constant 0
 return
