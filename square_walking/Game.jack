@@ -3,12 +3,14 @@ class Game {
   field Wall wall;
   field int direction;
   field int time;
+  field Pause_interface pause;
 
   constructor Game new(int difficulty, int level) {
     let time = difficulty;
     let wall = Wall.intitialize(level);
     let square = Square.new(8, 8, 7);
     let direction = 0;
+    let pause = Pause_interface.new();
     return this;
   }
 
@@ -17,6 +19,7 @@ class Game {
     do square.dispose();
     do Memory.deAlloc(this);
     do Screen.clearScreen();
+    do pause.dispose();
     return;
   }
 
@@ -56,6 +59,7 @@ class Game {
       }
 
       if(key = 81) {    // press q
+        do pause.choose();
         let exit = true;
       }
        if(key = 131) {   // press up_direction
@@ -83,6 +87,6 @@ class Game {
         }
       }
     }
-    return 2;   // exit
+    return pause.get_value();   // exit
   }
 }

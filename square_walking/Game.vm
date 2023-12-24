@@ -1,5 +1,5 @@
 function Game.new 0
-push constant 4
+push constant 5
 call Memory.alloc 1
 pop pointer 0
 push argument 0
@@ -14,6 +14,8 @@ call Square.new 3
 pop this 0
 push constant 0
 pop this 2
+call Pause_interface.new 0
+pop this 4
 push pointer 0
 return
 function Game.dispose 0
@@ -29,6 +31,9 @@ push pointer 0
 call Memory.deAlloc 1
 pop temp 0
 call Screen.clearScreen 0
+pop temp 0
+push this 4
+call Pause_interface.dispose 1
 pop temp 0
 push constant 0
 return
@@ -138,6 +143,9 @@ eq
 if-goto IF_TRUE2
 goto IF_FALSE2
 label IF_TRUE2
+push this 4
+call Pause_interface.choose 1
+pop temp 0
 push constant 0
 not
 pop local 1
@@ -223,5 +231,6 @@ goto WHILE_EXP2
 label WHILE_END2
 goto WHILE_EXP0
 label WHILE_END0
-push constant 2
+push this 4
+call Pause_interface.get_value 1
 return

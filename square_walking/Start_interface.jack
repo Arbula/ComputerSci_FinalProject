@@ -81,7 +81,7 @@ class Start_interface {
         if(result = 1) {
           let level = level + 1;
         }
-        if(result = 2) {
+        if(result = 3) {
           let exit_choose1 = true;
         }
         do game.dispose();

@@ -245,7 +245,7 @@ add
 pop local 2
 label IF_FALSE6
 push local 3
-push constant 2
+push constant 3
 eq
 if-goto IF_TRUE7
 goto IF_FALSE7

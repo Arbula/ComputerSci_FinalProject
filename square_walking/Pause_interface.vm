@@ -1,0 +1,199 @@
+function Pause_interface.new 0
+push constant 1
+call Memory.alloc 1
+pop pointer 0
+push constant 2
+pop this 0
+push pointer 0
+return
+function Pause_interface.dispose 0
+push argument 0
+pop pointer 0
+push pointer 0
+call Memory.deAlloc 1
+pop temp 0
+push constant 0
+return
+function Pause_interface.clearc 0
+push argument 0
+pop pointer 0
+push argument 1
+push constant 10
+add
+push constant 25
+call Output.moveCursor 2
+pop temp 0
+call Output.backSpace 0
+pop temp 0
+push constant 0
+return
+function Pause_interface.printc 0
+push argument 0
+pop pointer 0
+push argument 1
+push constant 10
+add
+push constant 25
+call Output.moveCursor 2
+pop temp 0
+push constant 1
+call String.new 1
+push constant 99
+call String.appendChar 2
+call Output.printString 1
+pop temp 0
+push constant 0
+return
+function Pause_interface.get_value 0
+push argument 0
+pop pointer 0
+push this 0
+return
+function Pause_interface.choose 1
+push argument 0
+pop pointer 0
+push constant 0
+pop local 0
+call Screen.clearScreen 0
+pop temp 0
+push constant 12
+push constant 27
+call Output.moveCursor 2
+pop temp 0
+push constant 5
+call String.new 1
+push constant 82
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 116
+call String.appendChar 2
+push constant 114
+call String.appendChar 2
+push constant 121
+call String.appendChar 2
+call Output.printString 1
+pop temp 0
+push constant 12
+push constant 25
+call Output.moveCursor 2
+pop temp 0
+push constant 1
+call String.new 1
+push constant 99
+call String.appendChar 2
+call Output.printString 1
+pop temp 0
+push constant 13
+push constant 27
+call Output.moveCursor 2
+pop temp 0
+push constant 12
+call String.new 1
+push constant 66
+call String.appendChar 2
+push constant 97
+call String.appendChar 2
+push constant 99
+call String.appendChar 2
+push constant 107
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 116
+call String.appendChar 2
+push constant 111
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 104
+call String.appendChar 2
+push constant 111
+call String.appendChar 2
+push constant 109
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+call Output.printString 1
+pop temp 0
+label WHILE_EXP0
+push local 0
+not
+not
+if-goto WHILE_END0
+call Keyboard.keyPressed 0
+push constant 133
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push this 0
+push constant 3
+lt
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push pointer 0
+push this 0
+call Pause_interface.clearc 2
+pop temp 0
+push this 0
+push constant 1
+add
+pop this 0
+push pointer 0
+push this 0
+call Pause_interface.printc 2
+pop temp 0
+label IF_FALSE1
+label IF_FALSE0
+call Keyboard.keyPressed 0
+push constant 131
+eq
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push this 0
+push constant 2
+gt
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
+push pointer 0
+push this 0
+call Pause_interface.clearc 2
+pop temp 0
+push this 0
+push constant 1
+sub
+pop this 0
+push pointer 0
+push this 0
+call Pause_interface.printc 2
+pop temp 0
+label IF_FALSE3
+label IF_FALSE2
+call Keyboard.keyPressed 0
+push constant 128
+eq
+if-goto IF_TRUE4
+goto IF_FALSE4
+label IF_TRUE4
+push constant 0
+not
+pop local 0
+label IF_FALSE4
+push constant 1
+push constant 1
+call Output.moveCursor 2
+pop temp 0
+push this 0
+call Output.printInt 1
+pop temp 0
+push constant 50
+call Sys.wait 1
+pop temp 0
+goto WHILE_EXP0
+label WHILE_END0
+push constant 0
+return

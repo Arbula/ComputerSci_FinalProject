@@ -1,0 +1,68 @@
+class Pause_interface {
+  field int option;   // 2 for Retry, 3 for Back to home
+
+  constructor Pause_interface new() {
+    let option = 2;
+    return this;
+  }
+
+  method void dispose() {
+    do Memory.deAlloc(this);
+    return;
+  }
+
+  method void clearc(int i) {
+    do Output.moveCursor(i + 10, 25);
+    do Output.backSpace();
+    return;
+  }
+
+  method void printc(int i) {
+    do Output.moveCursor(i + 10, 25);
+    do Output.printString("c");
+    return;
+  }
+
+  method int get_value() {
+    return option;
+  }
+
+  method void choose() {
+    var boolean enter_pressed;
+    let enter_pressed = false;
+    do Screen.clearScreen();
+
+    do Output.moveCursor(12, 27);
+    do Output.printString("Retry");
+    do Output.moveCursor(12, 25);
+    do Output.printString("c");
+
+    do Output.moveCursor(13,27);
+    do Output.printString("Back to home");
+
+    while(~enter_pressed) {
+      if(Keyboard.keyPressed() = 133) {   //down_direction
+        if(option < 3) {
+          do clearc(option);
+          let option = option + 1;
+          do printc(option);
+        }
+      }
+      if(Keyboard.keyPressed() = 131) {   //up_direction
+        if(option > 2) {
+          do clearc(option);
+          let option = option - 1;
+          do printc(option);
+        }
+      }
+      if(Keyboard.keyPressed() = 128) {
+        let enter_pressed = true;
+      }
+
+      do Output.moveCursor(1, 1);
+      do Output.printInt(option);
+      do Sys.wait(50);
+    }
+    return;
+  }
+}
