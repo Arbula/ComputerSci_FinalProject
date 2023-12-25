@@ -183,14 +183,7 @@ push constant 0
 not
 pop local 0
 label IF_FALSE4
-push constant 1
-push constant 1
-call Output.moveCursor 2
-pop temp 0
-push this 0
-call Output.printInt 1
-pop temp 0
-push constant 50
+push constant 100
 call Sys.wait 1
 pop temp 0
 goto WHILE_EXP0

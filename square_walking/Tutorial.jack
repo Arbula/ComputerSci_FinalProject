@@ -18,7 +18,7 @@ class Tutorial {
       if(Keyboard.keyPressed() = 128) {
         let enter_pressed = true;
       }
-      do Sys.wait(50);
+      do Sys.wait(100);
     }
     return;
   }

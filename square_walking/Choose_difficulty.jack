@@ -2,7 +2,7 @@ class Choose_difficulty {
   field int difficulty;
 
   constructor Choose_difficulty new() {
-    let difficulty = 50;
+    let difficulty = 60;
     return this;
   }
 
@@ -63,12 +63,10 @@ class Choose_difficulty {
         let enter_pressed = true;
       }
 
-      do Output.moveCursor(1, 1);
-      do Output.printInt(option);
-      do Sys.wait(50);
+      do Sys.wait(100);
     }
 
-    let difficulty = 100 - (25 * option);
+    let difficulty = 100 - (20 * option);
     return;
   }
 }

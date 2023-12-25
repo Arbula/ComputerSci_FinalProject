@@ -59,9 +59,7 @@ class Pause_interface {
         let enter_pressed = true;
       }
 
-      do Output.moveCursor(1, 1);
-      do Output.printInt(option);
-      do Sys.wait(50);
+      do Sys.wait(100);
     }
     return;
   }

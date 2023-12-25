@@ -75,10 +75,8 @@ class Start_interface {
       if(Keyboard.keyPressed() = 128) {
         let enter_pressed = true;
       }
-
-      do Output.moveCursor(1, 1);
-      do Output.printInt(choose);
-      do Sys.wait(50);
+      
+      do Sys.wait(100);
     }
 
     if(choose = 1) {
